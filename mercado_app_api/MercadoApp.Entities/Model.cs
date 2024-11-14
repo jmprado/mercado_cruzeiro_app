@@ -1,15 +1,19 @@
-﻿namespace MercadoApp.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MercadoApp.Entities;
 
 public class TipoLoja
 {
+    [Key]
     public int Id { get; set; }
     public string Nome { get; set; } = "";
 
-    public virtual ICollection<Loja> Lojas { get; set; } = new List<Loja>();
+    public virtual ICollection<Loja>? Lojas { get; set; } = [];
 }
 
 public class Loja
 {
+    [Key]
     public int Id { get; set; }
     public int IdTipoLoja { get; set; }
     public string Nome { get; set; } = "";
@@ -28,6 +32,7 @@ public class Loja
 
 public class Produto
 {
+    [Key]
     public int Id { get; set; }
     public string Nome { get; set; } = "";
     public int Preco { get; set; }
@@ -40,6 +45,7 @@ public class Produto
 
 public class UnidadeProduto
 {
+    [Key]
     public int Id { get; set; }
     public string Nome { get; set; } = "";
 
@@ -48,6 +54,7 @@ public class UnidadeProduto
 
 public class Estoque
 {
+    [Key]
     public int Id { get; set; }
     public int IdProduto { get; set; }
     public int IdLoja { get; set; }
@@ -61,6 +68,7 @@ public class Estoque
 
 public class Cliente
 {
+    [Key]
     public int Id { get; set; }
     public string Nome { get; set; } = "";
     public string Email { get; set; } = "";
@@ -77,6 +85,7 @@ public class Cliente
 
 public class Pedido
 {
+    [Key]
     public int Id { get; set; }
     public DateTime DataPedido { get; set; }
     public int IdLoja { get; set; }
@@ -89,6 +98,7 @@ public class Pedido
 
 public class PedidoProduto
 {
+    [Key]
     public int Id { get; set; }
     public int IdPedido { get; set; }
     public int IdProduto { get; set; }
@@ -100,6 +110,7 @@ public class PedidoProduto
 
 public class EntradaProduto
 {
+    [Key]
     public int Id { get; set; }
     public int Quantidade { get; set; }
     public int IdProduto { get; set; }
@@ -110,6 +121,7 @@ public class EntradaProduto
 
 public class ImagemProduto
 {
+    [Key]
     public int Id { get; set; }
     public int IdProduto { get; set; }
     public string Path { get; set; } = "";

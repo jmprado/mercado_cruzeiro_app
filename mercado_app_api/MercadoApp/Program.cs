@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MercadoAppDbContext>(options =>
 {
-    options.UseSqlite(connectionString);
+    options.UseSqlite(connectionString, sqlite => sqlite.MigrationsAssembly("MercadoApp.Entities"));
     options.UseLazyLoadingProxies();
 });
 
