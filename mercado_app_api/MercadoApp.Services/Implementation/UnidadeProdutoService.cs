@@ -29,20 +29,22 @@ public class UnidadeProdutoService : IUnidadeProdutoService
         return _mapper.Map<UnidadeProdutoDTO>(entity);
     }
 
-    public async Task AddAsync(UnidadeProdutoDTO dto)
+    public async Task<UnidadeProdutoDTO> AddAsync(UnidadeProdutoDTO dto)
     {
         var entity = _mapper.Map<UnidadeProduto>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<UnidadeProdutoDTO>(addedEntity);
     }
 
-    public async Task UpdateAsync(UnidadeProdutoDTO dto)
+    public async Task<bool> UpdateAsync(UnidadeProdutoDTO dto)
     {
         var entity = _mapper.Map<UnidadeProduto>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }
+

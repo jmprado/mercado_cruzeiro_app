@@ -29,20 +29,22 @@ public class LojaService : ILojaService
         return _mapper.Map<LojaDTO>(entity);
     }
 
-    public async Task AddAsync(LojaDTO dto)
+    public async Task<LojaDTO> AddAsync(LojaDTO dto)
     {
         var entity = _mapper.Map<Loja>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<LojaDTO>(addedEntity);
+
     }
 
-    public async Task UpdateAsync(LojaDTO dto)
+    public async Task<bool> UpdateAsync(LojaDTO dto)
     {
         var entity = _mapper.Map<Loja>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }

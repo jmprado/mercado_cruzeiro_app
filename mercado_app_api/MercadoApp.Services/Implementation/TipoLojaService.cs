@@ -8,10 +8,10 @@ namespace MercadoApp.Services.Implementation;
 
 public class TipoLojaService : ITipoLojaService
 {
-    private readonly ITipoLojaRepository _repository;
+    private readonly IProdutoRepository _repository;
     private readonly IMapper _mapper;
 
-    public TipoLojaService(ITipoLojaRepository repository, IMapper mapper)
+    public TipoLojaService(IProdutoRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -29,20 +29,22 @@ public class TipoLojaService : ITipoLojaService
         return _mapper.Map<TipoLojaDTO>(entity);
     }
 
-    public async Task AddAsync(TipoLojaDTO dto)
+    public async Task<TipoLojaDTO> AddAsync(TipoLojaDTO dto)
     {
-        var entity = _mapper.Map<TipoLoja>(dto);
-        await _repository.AddAsync(entity);
+        var entity = _mapper.Map<Produto>(dto);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<TipoLojaDTO>(addedEntity);
     }
 
-    public async Task UpdateAsync(TipoLojaDTO dto)
+    public async Task<bool> UpdateAsync(TipoLojaDTO dto)
     {
-        var entity = _mapper.Map<TipoLoja>(dto);
-        await _repository.UpdateAsync(entity);
+        var entity = _mapper.Map<Produto>(dto);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }
+

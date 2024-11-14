@@ -29,20 +29,21 @@ public class EntradaProdutoService : IEntradaProdutoService
         return _mapper.Map<EntradaProdutoDTO>(entity);
     }
 
-    public async Task AddAsync(EntradaProdutoDTO dto)
+    public async Task<EntradaProdutoDTO> AddAsync(EntradaProdutoDTO dto)
     {
         var entity = _mapper.Map<EntradaProduto>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<EntradaProdutoDTO>(addedEntity);
     }
 
-    public async Task UpdateAsync(EntradaProdutoDTO dto)
+    public async Task<bool> UpdateAsync(EntradaProdutoDTO dto)
     {
         var entity = _mapper.Map<EntradaProduto>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }
