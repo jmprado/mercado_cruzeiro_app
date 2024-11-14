@@ -3,6 +3,7 @@ using System;
 using MercadoApp.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoApp.Entities.Migrations
 {
     [DbContext(typeof(MercadoAppDbContext))]
-    partial class MercadoAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241114194105_Update VI")]
+    partial class UpdateVI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

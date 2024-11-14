@@ -1,11 +1,13 @@
 using MercadoApp.DTOs;
 using MercadoApp.Services.Abstraction;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MercadoApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LojaController : ControllerBase
     {
         private readonly ILojaService _lojaService;

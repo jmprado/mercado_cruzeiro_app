@@ -8,10 +8,10 @@ namespace MercadoApp.Services.Implementation;
 
 public class TipoLojaService : ITipoLojaService
 {
-    private readonly IProdutoRepository _repository;
+    private readonly ITipoLojaRepository _repository;
     private readonly IMapper _mapper;
 
-    public TipoLojaService(IProdutoRepository repository, IMapper mapper)
+    public TipoLojaService(ITipoLojaRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -31,14 +31,14 @@ public class TipoLojaService : ITipoLojaService
 
     public async Task<TipoLojaDTO> AddAsync(TipoLojaDTO dto)
     {
-        var entity = _mapper.Map<Produto>(dto);
+        var entity = _mapper.Map<TipoLoja>(dto);
         var addedEntity = await _repository.AddAsync(entity);
         return _mapper.Map<TipoLojaDTO>(addedEntity);
     }
 
     public async Task<bool> UpdateAsync(TipoLojaDTO dto)
     {
-        var entity = _mapper.Map<Produto>(dto);
+        var entity = _mapper.Map<TipoLoja>(dto);
         return await _repository.UpdateAsync(entity);
     }
 

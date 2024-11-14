@@ -3,6 +3,7 @@ using MercadoApp.DTOs;
 using MercadoApp.Entities;
 using MercadoApp.Repository.Abstraction;
 using MercadoApp.Services.Abstraction;
+using MercadoApp.ViewModel;
 
 namespace MercadoApp.Services.Implementation;
 
@@ -46,5 +47,18 @@ public class LojaService : ILojaService
     public async Task<bool> DeleteAsync(int id)
     {
         return await _repository.DeleteAsync(id);
+    }
+
+    public async Task<AuthenticationModel?> Authenticate(AuthenticationModel authenticationModel)
+    {
+        var authResult = await _repository.Authenticate(authenticationModel.Email, authenticationModel.Senha);
+        if (authResult == null)
+        {
+            return null;
+        }
+
+        var authModel = _mapper.Map<AuthenticationModel>(authResult);
+
+        return authModel;
     }
 }

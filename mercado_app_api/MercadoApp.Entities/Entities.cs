@@ -22,6 +22,7 @@ public class Loja
     public string Nome { get; set; } = "";
     public string NomeProprietario { get; set; } = "";
     public string Email { get; set; } = "";
+    public string Senha { get; set; } = "";
     public string Telefone { get; set; } = "";
     public string Whatsapp { get; set; } = "";
     public string Descricao { get; set; } = "";

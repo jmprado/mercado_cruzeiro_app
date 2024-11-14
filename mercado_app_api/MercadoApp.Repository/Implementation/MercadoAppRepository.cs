@@ -90,6 +90,11 @@ public class LojaRepository : ILojaRepository
         }
         return false;
     }
+
+    public async Task<Loja?> Authenticate(string email, string senha)
+    {
+        return await _context.Lojas.FirstOrDefaultAsync(x => x.Email == email && x.Senha == senha);
+    }
 }
 
 public class ProdutoRepository : IProdutoRepository

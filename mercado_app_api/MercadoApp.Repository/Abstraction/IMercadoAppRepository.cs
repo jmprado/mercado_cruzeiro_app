@@ -16,6 +16,7 @@ public interface ILojaRepository
     Task<IEnumerable<Loja>> GetAllAsync();
     Task<Loja?> GetByIdAsync(int id);
     Task<Loja> AddAsync(Loja entity);
+    Task<Loja?> Authenticate(string email, string senha);
     Task<bool> UpdateAsync(Loja entity);
     Task<bool> DeleteAsync(int id);
 }

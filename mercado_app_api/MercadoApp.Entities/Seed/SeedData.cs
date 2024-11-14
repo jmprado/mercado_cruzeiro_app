@@ -58,17 +58,18 @@ public static class SeedData
 
     public static Loja[] ListaLojas =
     {
-        new Loja { Id = 1, Nome = "Mercado do João", NomeProprietario = "João", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Mercado do João", ImagemLoja = "", Delivery = 1, IdTipoLoja = 1 },
-        new Loja { Id = 2, Nome = "Padaria do José", NomeProprietario = "José", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Padaria do José", ImagemLoja = "", Delivery = 1, IdTipoLoja = 2 },
-        new Loja { Id = 3, Nome = "Farmácia da Maria", NomeProprietario = "Maria", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Farmácia da Maria", ImagemLoja = "", Delivery = 1, IdTipoLoja = 3 },
-        new Loja { Id = 4, Nome = "Restaurante do Pedro", NomeProprietario = "Pedro", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Restaurante do Pedro", ImagemLoja = "", Delivery = 1, IdTipoLoja = 4 },
-        new Loja { Id = 5, Nome = "Lanchonete da Ana", NomeProprietario = "Ana", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Lanchonete da Ana", ImagemLoja = "", Delivery = 1, IdTipoLoja = 5 },
-        new Loja { Id = 6, Nome = "Pizzaria do Carlos", NomeProprietario = "Carlos", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Pizzaria do Carlos", ImagemLoja = "", Delivery = 1, IdTipoLoja = 6 },
-        new Loja { Id = 7, Nome = "Sorveteria da Júlia", NomeProprietario = "Júlia", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Sorveteria da Júlia", ImagemLoja = "", Delivery = 1, IdTipoLoja = 7 },
-        new Loja { Id = 8, Nome = "Bar do Mário", NomeProprietario = "Mário", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Bar do Mário", ImagemLoja = "", Delivery = 1, IdTipoLoja = 8 },
-        new Loja { Id = 9, Nome = "Livros do Lucas", NomeProprietario = "Lucas", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Livros do Lucas", ImagemLoja = "", Delivery = 1, IdTipoLoja = 10 },
-        new Loja { Id = 10, Nome = "Livros e Brinquedos da Laura", NomeProprietario = "Laura", Email = "", Telefone = "", Whatsapp = "11999999999", Descricao = "Livros e Brinquedos da Laura", ImagemLoja = "", Delivery = 1, IdTipoLoja = 11 },
+        new Loja { Id = 1, Nome = "Mercado do João", NomeProprietario = "João", Email = "joao@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Mercado do João", ImagemLoja = "", Delivery = 1, IdTipoLoja = 1, Senha = "senha123" },
+        new Loja { Id = 2, Nome = "Padaria do José", NomeProprietario = "José", Email = "jose@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Padaria do José", ImagemLoja = "", Delivery = 1, IdTipoLoja = 2, Senha = "senha123" },
+        new Loja { Id = 3, Nome = "Farmácia da Maria", NomeProprietario = "Maria", Email = "maria@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Farmácia da Maria", ImagemLoja = "", Delivery = 1, IdTipoLoja = 3, Senha = "senha123" },
+        new Loja { Id = 4, Nome = "Restaurante do Pedro", NomeProprietario = "Pedro", Email = "pedro@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Restaurante do Pedro", ImagemLoja = "", Delivery = 1, IdTipoLoja = 4, Senha = "senha123" },
+        new Loja { Id = 5, Nome = "Lanchonete da Ana", NomeProprietario = "Ana", Email = "ana@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Lanchonete da Ana", ImagemLoja = "", Delivery = 1, IdTipoLoja = 5, Senha = "senha123" },
+        new Loja { Id = 6, Nome = "Pizzaria do Carlos", NomeProprietario = "Carlos", Email = "carlos@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Pizzaria do Carlos", ImagemLoja = "", Delivery = 1, IdTipoLoja = 6, Senha = "senha123" },
+        new Loja { Id = 7, Nome = "Sorveteria da Júlia", NomeProprietario = "Júlia", Email = "julia@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Sorveteria da Júlia", ImagemLoja = "", Delivery = 1, IdTipoLoja = 7, Senha = "senha123" },
+        new Loja { Id = 8, Nome = "Bar do Mário", NomeProprietario = "Mário", Email = "mario@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Bar do Mário", ImagemLoja = "", Delivery = 1, IdTipoLoja = 8, Senha = "senha123" },
+        new Loja { Id = 9, Nome = "Livros do Lucas", NomeProprietario = "Lucas", Email = "lucas@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Livros do Lucas", ImagemLoja = "", Delivery = 1, IdTipoLoja = 10, Senha = "senha123" },
+        new Loja { Id = 10, Nome = "Livros e Brinquedos da Laura", NomeProprietario = "Laura", Email = "laura@exemplo.com", Telefone = "", Whatsapp = "11999999999", Descricao = "Livros e Brinquedos da Laura", ImagemLoja = "", Delivery = 1, IdTipoLoja = 11, Senha = "senha123" },
     };
+
 
     public static TipoLoja[] ListaTipoLoja =
     {
