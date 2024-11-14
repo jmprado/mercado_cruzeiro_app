@@ -1,3 +1,5 @@
+using MercadoApp.Entities;
+
 namespace MercadoApp.DTOs;
 
 public class PedidoDTO
@@ -6,7 +8,9 @@ public class PedidoDTO
     public DateTime DataPedido { get; set; }
     public int IdLoja { get; set; }
     public int IdCliente { get; set; }
-    public LojaDTO? Loja { get; set; }
-    public ClienteDTO? Cliente { get; set; }
-    public ICollection<PedidoProdutoDTO>? PedidoProdutos { get; set; }
+    public bool Atendido { get; set; }
+    public DateTime? DataAtendimento { get; set; }
+    public Loja? LojaPedido { get; set; }
+    public Cliente? ClientePedido { get; set; }
+    public List<PedidoProdutoDTO>? PedidoProdutos { get; set; }
 }

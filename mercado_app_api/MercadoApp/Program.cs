@@ -1,4 +1,5 @@
 using MercadoApp.Entities;
+using MercadoApp.Entities.Seed;
 using MercadoApp.Repository.Abstraction;
 using MercadoApp.Repository.Implementation;
 using MercadoApp.Services.Abstraction;
@@ -28,7 +29,6 @@ builder.Services.AddDbContext<MercadoAppDbContext>(options =>
     options.UseLazyLoadingProxies();
 });
 
-
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddScoped<ITipoLojaRepository, TipoLojaRepository>();
@@ -53,10 +53,9 @@ builder.Services.AddScoped<IPedidoProdutoService, PedidoProdutoService>();
 builder.Services.AddScoped<IEntradaProdutoService, EntradaProdutoService>();
 builder.Services.AddScoped<IImagemProdutoService, ImagemProdutoService>();
 
-
 var app = builder.Build();
+SeedDatabase();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -70,3 +69,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+void SeedDatabase()
+{
+    using var scope = app.Services.CreateScope();
+    try
+    {
+        var scopedContext = scope.ServiceProvider.GetRequiredService<MercadoAppDbContext>();
+        Seeder.Initialize(scopedContext);
+    }
+    catch
+    {
+        throw;
+    }
+}

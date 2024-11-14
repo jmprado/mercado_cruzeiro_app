@@ -18,7 +18,7 @@ public class TipoLojaRepository : ITipoLojaRepository
         return await _context.TiposLoja.ToListAsync();
     }
 
-    public async Task<TipoLoja> GetByIdAsync(int id)
+    public async Task<TipoLoja?> GetByIdAsync(int id)
     {
         return await _context.TiposLoja.FindAsync(id);
     }
@@ -60,7 +60,7 @@ public class LojaRepository : ILojaRepository
         return await _context.Lojas.ToListAsync();
     }
 
-    public async Task<Loja> GetByIdAsync(int id)
+    public async Task<Loja?> GetByIdAsync(int id)
     {
         return await _context.Lojas.FindAsync(id);
     }
@@ -102,7 +102,7 @@ public class ProdutoRepository : IProdutoRepository
         return await _context.Produtos.ToListAsync();
     }
 
-    public async Task<Produto> GetByIdAsync(int id)
+    public async Task<Produto?> GetByIdAsync(int id)
     {
         return await _context.Produtos.FindAsync(id);
     }
@@ -144,7 +144,7 @@ public class UnidadeProdutoRepository : IUnidadeProdutoRepository
         return await _context.UnidadesProduto.ToListAsync();
     }
 
-    public async Task<UnidadeProduto> GetByIdAsync(int id)
+    public async Task<UnidadeProduto?> GetByIdAsync(int id)
     {
         return await _context.UnidadesProduto.FindAsync(id);
     }
@@ -186,7 +186,7 @@ public class EstoqueRepository : IEstoqueRepository
         return await _context.Estoque.ToListAsync();
     }
 
-    public async Task<Estoque> GetByIdAsync(int id)
+    public async Task<Estoque?> GetByIdAsync(int id)
     {
         return await _context.Estoque.FindAsync(id);
     }
@@ -228,7 +228,7 @@ public class ClienteRepository : IClienteRepository
         return await _context.Clientes.ToListAsync();
     }
 
-    public async Task<Cliente> GetByIdAsync(int id)
+    public async Task<Cliente?> GetByIdAsync(int id)
     {
         return await _context.Clientes.FindAsync(id);
     }
@@ -270,7 +270,7 @@ public class PedidoRepository : IPedidoRepository
         return await _context.Pedidos.ToListAsync();
     }
 
-    public async Task<Pedido> GetByIdAsync(int id)
+    public async Task<Pedido?> GetByIdAsync(int id)
     {
         return await _context.Pedidos.FindAsync(id);
     }
@@ -312,7 +312,7 @@ public class PedidoProdutoRepository : IPedidoProdutoRepository
         return await _context.PedidoProdutos.ToListAsync();
     }
 
-    public async Task<PedidoProduto> GetByIdAsync(int id)
+    public async Task<PedidoProduto?> GetByIdAsync(int id)
     {
         return await _context.PedidoProdutos.FindAsync(id);
     }
@@ -354,7 +354,7 @@ public class EntradaProdutoRepository : IEntradaProdutoRepository
         return await _context.EntradaProdutos.ToListAsync();
     }
 
-    public async Task<EntradaProduto> GetByIdAsync(int id)
+    public async Task<EntradaProduto?> GetByIdAsync(int id)
     {
         return await _context.EntradaProdutos.FindAsync(id);
     }
@@ -396,7 +396,7 @@ public class ImagemProdutoRepository : IImagemProdutoRepository
         return await _context.ImagensProduto.ToListAsync();
     }
 
-    public async Task<ImagemProduto> GetByIdAsync(int id)
+    public async Task<ImagemProduto?> GetByIdAsync(int id)
     {
         return await _context.ImagensProduto.FindAsync(id);
     }

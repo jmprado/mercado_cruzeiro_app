@@ -1,18 +1,18 @@
+using MercadoApp.Entities;
+
 namespace MercadoApp.DTOs;
 
 public class LojaDTO
 {
     public int Id { get; set; }
     public int IdTipoLoja { get; set; }
-    public string Nome { get; set; }
-    public string NomeProprietario { get; set; }
-    public string Email { get; set; }
-    public string Telefone { get; set; }
-    public string Whatsapp { get; set; }
-    public string Descricao { get; set; }
-    public string ImagemLoja { get; set; }
-    public int Delivery { get; set; }
-    public TipoLojaDTO TipoLoja { get; set; }
-    public ICollection<EstoqueDTO> Estoques { get; set; }
-    public ICollection<PedidoDTO> Pedidos { get; set; }
+    public required string Nome { get; set; }
+    public required string NomeProprietario { get; set; }
+    public required string Email { get; set; }
+    public required string Telefone { get; set; }
+    public required string Whatsapp { get; set; }
+    public required string Descricao { get; set; }
+    public required string ImagemLoja { get; set; }
+    public bool Delivery { get; set; }
+    public TipoLoja? TipoLoja { get; set; }
 }
