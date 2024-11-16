@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MercadoApp.Entities\MercadoApp.Entities.csproj" />
+    <ProjectReference Include="..\MercadoApp.Repository\MercadoApp.Repository.csproj" />
+    <ProjectReference Include="..\MercadoApp.ViewModel\MercadoApp.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\estudos\react_native_extensao_estacio\mercado_app_api\MercadoApp.Services\Implementation\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\estudos\react_native_extensao_estacio\mercado_app_api\MercadoApp.Services\Implementation\.editorconfig" />
+  </ItemGroup>
+
+</Project>

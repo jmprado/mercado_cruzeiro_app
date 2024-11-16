@@ -1,0 +1,4 @@
+dotnet ef --startup-project ./MercadoApp.csproj migrations add "Initial" --context MercadoAppDbContext --output-dir Migrations --project "../MercadoApp.Entities/MercadoApp.Entities.csproj"
+
+
+dotnet ef dbcontext scaffold "Name=ConnectionStrings:DefaultConnection" Microsoft.EntityFrameworkCore.SQLite -force
