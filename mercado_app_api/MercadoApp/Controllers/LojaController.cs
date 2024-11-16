@@ -24,6 +24,18 @@ namespace MercadoApp.Controllers
             return Ok(lojas);
         }
 
+
+        [HttpGet("getbyemail/{email}")]
+        public async Task<ActionResult<LojaDTO>> GetByEmail([FromRoute] string email)
+        {
+            var loja = await _lojaService.GetByEmailAsync(email);
+            if (loja == null)
+            {
+                return NotFound();
+            }
+            return Ok(loja);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<LojaDTO>> GetById(int id)
         {

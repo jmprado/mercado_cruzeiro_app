@@ -51,7 +51,7 @@ public class LojaService : ILojaService
 
     public async Task<AuthenticationModel?> Authenticate(AuthenticationModel authenticationModel)
     {
-        var authResult = await _repository.Authenticate(authenticationModel.Email, authenticationModel.Senha);
+        var authResult = await _repository.AuthenticateAsync(authenticationModel.Email, authenticationModel.Senha);
         if (authResult == null)
         {
             return null;
@@ -60,5 +60,10 @@ public class LojaService : ILojaService
         var authModel = _mapper.Map<AuthenticationModel>(authResult);
 
         return authModel;
+    }
+
+    public async Task<LojaDTO?> GetByEmailAsync(string email)
+    {
+        return _mapper.Map<LojaDTO>(await _repository.GetByEmailAsync(email));
     }
 }

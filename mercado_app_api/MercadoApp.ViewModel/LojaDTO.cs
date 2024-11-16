@@ -1,5 +1,3 @@
-using MercadoApp.Entities;
-
 namespace MercadoApp.DTOs;
 
 public class LojaDTO
@@ -14,5 +12,5 @@ public class LojaDTO
     public required string Descricao { get; set; }
     public required string ImagemLoja { get; set; }
     public bool Delivery { get; set; }
-    public TipoLoja? TipoLoja { get; set; }
+    public string? TipoLoja { get; set; }
 }

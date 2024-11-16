@@ -91,9 +91,14 @@ public class LojaRepository : ILojaRepository
         return false;
     }
 
-    public async Task<Loja?> Authenticate(string email, string senha)
+    public async Task<Loja?> AuthenticateAsync(string email, string senha)
     {
         return await _context.Lojas.FirstOrDefaultAsync(x => x.Email == email && x.Senha == senha);
+    }
+
+    public async Task<Loja?> GetByEmailAsync(string email)
+    {
+        return await _context.Lojas.FirstOrDefaultAsync(x => x.Email == email);
     }
 }
 
@@ -138,6 +143,11 @@ public class ProdutoRepository : IProdutoRepository
             return await _context.SaveChangesAsync() > 0;
         }
         return false;
+    }
+
+    public async Task<IEnumerable<Produto>> GetByIdLojaAsync(int idLoja)
+    {
+        return await _context.Produtos.Where(x => x.IdLoja == idLoja).OrderBy(p => p.Nome).ToListAsync();
     }
 }
 

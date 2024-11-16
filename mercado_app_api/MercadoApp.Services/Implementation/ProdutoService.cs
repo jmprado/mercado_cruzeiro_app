@@ -46,5 +46,10 @@ public class ProdutoService : IProdutoService
     {
         return await _repository.DeleteAsync(id);
     }
+
+    public async Task<IEnumerable<ProdutoDTO>> GetByIdLojaAsync(int idLoja)
+    {
+        return _mapper.Map<IEnumerable<ProdutoDTO>>(await _repository.GetByIdLojaAsync(idLoja));
+    }
 }
 

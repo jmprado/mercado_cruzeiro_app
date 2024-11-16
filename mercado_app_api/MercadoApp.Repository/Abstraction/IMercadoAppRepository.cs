@@ -16,9 +16,10 @@ public interface ILojaRepository
     Task<IEnumerable<Loja>> GetAllAsync();
     Task<Loja?> GetByIdAsync(int id);
     Task<Loja> AddAsync(Loja entity);
-    Task<Loja?> Authenticate(string email, string senha);
+    Task<Loja?> AuthenticateAsync(string email, string senha);
     Task<bool> UpdateAsync(Loja entity);
     Task<bool> DeleteAsync(int id);
+    Task<Loja?> GetByEmailAsync(string email);
 }
 
 public interface IProdutoRepository
@@ -28,6 +29,7 @@ public interface IProdutoRepository
     Task<Produto> AddAsync(Produto entity);
     Task<bool> UpdateAsync(Produto entity);
     Task<bool> DeleteAsync(int id);
+    Task<IEnumerable<Produto>> GetByIdLojaAsync(int idLoja);
 }
 
 public interface IUnidadeProdutoRepository
