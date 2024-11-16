@@ -1,11 +1,13 @@
 using MercadoApp.DTOs;
 using MercadoApp.Services.Abstraction;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MercadoApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LojaController : ControllerBase
     {
         private readonly ILojaService _lojaService;
@@ -20,6 +22,18 @@ namespace MercadoApp.Controllers
         {
             var lojas = await _lojaService.GetAllAsync();
             return Ok(lojas);
+        }
+
+
+        [HttpGet("getbyemail/{email}")]
+        public async Task<ActionResult<LojaDTO>> GetByEmail([FromRoute] string email)
+        {
+            var loja = await _lojaService.GetByEmailAsync(email);
+            if (loja == null)
+            {
+                return NotFound();
+            }
+            return Ok(loja);
         }
 
         [HttpGet("{id}")]

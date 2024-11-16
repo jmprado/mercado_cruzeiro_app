@@ -29,20 +29,21 @@ public class ClienteService : IClienteService
         return _mapper.Map<ClienteDTO>(entity);
     }
 
-    public async Task AddAsync(ClienteDTO dto)
+    public async Task<ClienteDTO> AddAsync(ClienteDTO dto)
     {
         var entity = _mapper.Map<Cliente>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<ClienteDTO>(addedEntity);
     }
 
-    public async Task UpdateAsync(ClienteDTO dto)
+    public async Task<bool> UpdateAsync(ClienteDTO dto)
     {
         var entity = _mapper.Map<Cliente>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }

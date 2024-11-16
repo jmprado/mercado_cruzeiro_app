@@ -15,7 +15,9 @@ public class MercadoAppDbContext : DbContext
     public DbSet<EntradaProduto> EntradaProdutos { get; set; }
     public DbSet<ImagemProduto> ImagensProduto { get; set; }
 
-    public MercadoAppDbContext(DbContextOptions<MercadoAppDbContext> options) : base(options) { }
+    public MercadoAppDbContext(DbContextOptions<MercadoAppDbContext> options) : base(options)
+    {
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -47,8 +49,26 @@ public class MercadoAppDbContext : DbContext
         {
             entity.ToTable("produto");
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.Nome).IsRequired();
+            entity.Property(e => e.IdLoja).IsRequired();
+            entity.Property(e => e.Nome).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Descricao).HasMaxLength(500);
             entity.Property(e => e.Preco).IsRequired();
+            entity.HasOne(e => e.Loja)
+                  .WithMany(l => l.Produtos)
+                  .HasForeignKey(e => e.IdLoja)
+                  .OnDelete(DeleteBehavior.Cascade);
+            entity.HasMany(e => e.Estoques)
+                  .WithOne(e => e.Produto)
+                  .HasForeignKey(e => e.IdProduto);
+            entity.HasMany(e => e.PedidoProdutos)
+                  .WithOne(e => e.Produto)
+                  .HasForeignKey(e => e.IdProduto);
+            entity.HasMany(e => e.EntradaProdutos)
+                  .WithOne(e => e.Produto)
+                  .HasForeignKey(e => e.IdProduto);
+            entity.HasMany(e => e.ImagemProdutos)
+                  .WithOne(e => e.Produto)
+                  .HasForeignKey(e => e.IdProduto);
         });
 
         modelBuilder.Entity<UnidadeProduto>(entity =>

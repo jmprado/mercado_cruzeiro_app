@@ -29,20 +29,21 @@ public class PedidoProdutoService : IPedidoProdutoService
         return _mapper.Map<PedidoProdutoDTO>(entity);
     }
 
-    public async Task AddAsync(PedidoProdutoDTO dto)
+    public async Task<PedidoProdutoDTO> AddAsync(PedidoProdutoDTO dto)
     {
         var entity = _mapper.Map<PedidoProduto>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<PedidoProdutoDTO>(addedEntity);
     }
 
-    public async Task UpdateAsync(PedidoProdutoDTO dto)
+    public async Task<bool> UpdateAsync(PedidoProdutoDTO dto)
     {
         var entity = _mapper.Map<PedidoProduto>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }

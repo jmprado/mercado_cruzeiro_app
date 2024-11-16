@@ -3,6 +3,7 @@ using MercadoApp.DTOs;
 using MercadoApp.Entities;
 using MercadoApp.Repository.Abstraction;
 using MercadoApp.Services.Abstraction;
+using MercadoApp.ViewModel;
 
 namespace MercadoApp.Services.Implementation;
 
@@ -29,20 +30,40 @@ public class LojaService : ILojaService
         return _mapper.Map<LojaDTO>(entity);
     }
 
-    public async Task AddAsync(LojaDTO dto)
+    public async Task<LojaDTO> AddAsync(LojaDTO dto)
     {
         var entity = _mapper.Map<Loja>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<LojaDTO>(addedEntity);
+
     }
 
-    public async Task UpdateAsync(LojaDTO dto)
+    public async Task<bool> UpdateAsync(LojaDTO dto)
     {
         var entity = _mapper.Map<Loja>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
+    }
+
+    public async Task<AuthenticationModel?> Authenticate(AuthenticationModel authenticationModel)
+    {
+        var authResult = await _repository.AuthenticateAsync(authenticationModel.Email, authenticationModel.Senha);
+        if (authResult == null)
+        {
+            return null;
+        }
+
+        var authModel = _mapper.Map<AuthenticationModel>(authResult);
+
+        return authModel;
+    }
+
+    public async Task<LojaDTO?> GetByEmailAsync(string email)
+    {
+        return _mapper.Map<LojaDTO>(await _repository.GetByEmailAsync(email));
     }
 }

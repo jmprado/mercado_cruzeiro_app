@@ -29,20 +29,22 @@ public class ImagemProdutoService : IImagemProdutoService
         return _mapper.Map<ImagemProdutoDTO>(entity);
     }
 
-    public async Task AddAsync(ImagemProdutoDTO dto)
+    public async Task<ImagemProdutoDTO> AddAsync(ImagemProdutoDTO dto)
     {
         var entity = _mapper.Map<ImagemProduto>(dto);
-        await _repository.AddAsync(entity);
+        var addedEntity = await _repository.AddAsync(entity);
+        return _mapper.Map<ImagemProdutoDTO>(addedEntity);
     }
 
-    public async Task UpdateAsync(ImagemProdutoDTO dto)
+    public async Task<bool> UpdateAsync(ImagemProdutoDTO dto)
     {
         var entity = _mapper.Map<ImagemProduto>(dto);
-        await _repository.UpdateAsync(entity);
+        return await _repository.UpdateAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        return await _repository.DeleteAsync(id);
     }
 }
+

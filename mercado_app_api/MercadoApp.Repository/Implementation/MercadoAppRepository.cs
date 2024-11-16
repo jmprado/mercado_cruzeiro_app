@@ -18,31 +18,33 @@ public class TipoLojaRepository : ITipoLojaRepository
         return await _context.TiposLoja.ToListAsync();
     }
 
-    public async Task<TipoLoja> GetByIdAsync(int id)
+    public async Task<TipoLoja?> GetByIdAsync(int id)
     {
         return await _context.TiposLoja.FindAsync(id);
     }
 
-    public async Task AddAsync(TipoLoja entity)
+    public async Task<TipoLoja> AddAsync(TipoLoja entity)
     {
         await _context.TiposLoja.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(TipoLoja entity)
+    public async Task<bool> UpdateAsync(TipoLoja entity)
     {
         _context.TiposLoja.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.TiposLoja.FindAsync(id);
         if (entity != null)
         {
             _context.TiposLoja.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -60,31 +62,43 @@ public class LojaRepository : ILojaRepository
         return await _context.Lojas.ToListAsync();
     }
 
-    public async Task<Loja> GetByIdAsync(int id)
+    public async Task<Loja?> GetByIdAsync(int id)
     {
         return await _context.Lojas.FindAsync(id);
     }
 
-    public async Task AddAsync(Loja entity)
+    public async Task<Loja> AddAsync(Loja entity)
     {
         await _context.Lojas.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(Loja entity)
+    public async Task<bool> UpdateAsync(Loja entity)
     {
         _context.Lojas.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.Lojas.FindAsync(id);
         if (entity != null)
         {
             _context.Lojas.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
+    }
+
+    public async Task<Loja?> AuthenticateAsync(string email, string senha)
+    {
+        return await _context.Lojas.FirstOrDefaultAsync(x => x.Email == email && x.Senha == senha);
+    }
+
+    public async Task<Loja?> GetByEmailAsync(string email)
+    {
+        return await _context.Lojas.FirstOrDefaultAsync(x => x.Email == email);
     }
 }
 
@@ -102,31 +116,38 @@ public class ProdutoRepository : IProdutoRepository
         return await _context.Produtos.ToListAsync();
     }
 
-    public async Task<Produto> GetByIdAsync(int id)
+    public async Task<Produto?> GetByIdAsync(int id)
     {
         return await _context.Produtos.FindAsync(id);
     }
 
-    public async Task AddAsync(Produto entity)
+    public async Task<Produto> AddAsync(Produto entity)
     {
         await _context.Produtos.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(Produto entity)
+    public async Task<bool> UpdateAsync(Produto entity)
     {
         _context.Produtos.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.Produtos.FindAsync(id);
         if (entity != null)
         {
             _context.Produtos.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
+    }
+
+    public async Task<IEnumerable<Produto>> GetByIdLojaAsync(int idLoja)
+    {
+        return await _context.Produtos.Where(x => x.IdLoja == idLoja).OrderBy(p => p.Nome).ToListAsync();
     }
 }
 
@@ -144,31 +165,33 @@ public class UnidadeProdutoRepository : IUnidadeProdutoRepository
         return await _context.UnidadesProduto.ToListAsync();
     }
 
-    public async Task<UnidadeProduto> GetByIdAsync(int id)
+    public async Task<UnidadeProduto?> GetByIdAsync(int id)
     {
         return await _context.UnidadesProduto.FindAsync(id);
     }
 
-    public async Task AddAsync(UnidadeProduto entity)
+    public async Task<UnidadeProduto> AddAsync(UnidadeProduto entity)
     {
         await _context.UnidadesProduto.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(UnidadeProduto entity)
+    public async Task<bool> UpdateAsync(UnidadeProduto entity)
     {
         _context.UnidadesProduto.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.UnidadesProduto.FindAsync(id);
         if (entity != null)
         {
             _context.UnidadesProduto.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -186,31 +209,33 @@ public class EstoqueRepository : IEstoqueRepository
         return await _context.Estoque.ToListAsync();
     }
 
-    public async Task<Estoque> GetByIdAsync(int id)
+    public async Task<Estoque?> GetByIdAsync(int id)
     {
         return await _context.Estoque.FindAsync(id);
     }
 
-    public async Task AddAsync(Estoque entity)
+    public async Task<Estoque> AddAsync(Estoque entity)
     {
         await _context.Estoque.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(Estoque entity)
+    public async Task<bool> UpdateAsync(Estoque entity)
     {
         _context.Estoque.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.Estoque.FindAsync(id);
         if (entity != null)
         {
             _context.Estoque.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -228,31 +253,33 @@ public class ClienteRepository : IClienteRepository
         return await _context.Clientes.ToListAsync();
     }
 
-    public async Task<Cliente> GetByIdAsync(int id)
+    public async Task<Cliente?> GetByIdAsync(int id)
     {
         return await _context.Clientes.FindAsync(id);
     }
 
-    public async Task AddAsync(Cliente entity)
+    public async Task<Cliente> AddAsync(Cliente entity)
     {
         await _context.Clientes.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(Cliente entity)
+    public async Task<bool> UpdateAsync(Cliente entity)
     {
         _context.Clientes.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.Clientes.FindAsync(id);
         if (entity != null)
         {
             _context.Clientes.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -270,31 +297,33 @@ public class PedidoRepository : IPedidoRepository
         return await _context.Pedidos.ToListAsync();
     }
 
-    public async Task<Pedido> GetByIdAsync(int id)
+    public async Task<Pedido?> GetByIdAsync(int id)
     {
         return await _context.Pedidos.FindAsync(id);
     }
 
-    public async Task AddAsync(Pedido entity)
+    public async Task<Pedido> AddAsync(Pedido entity)
     {
         await _context.Pedidos.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(Pedido entity)
+    public async Task<bool> UpdateAsync(Pedido entity)
     {
         _context.Pedidos.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.Pedidos.FindAsync(id);
         if (entity != null)
         {
             _context.Pedidos.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -312,31 +341,33 @@ public class PedidoProdutoRepository : IPedidoProdutoRepository
         return await _context.PedidoProdutos.ToListAsync();
     }
 
-    public async Task<PedidoProduto> GetByIdAsync(int id)
+    public async Task<PedidoProduto?> GetByIdAsync(int id)
     {
         return await _context.PedidoProdutos.FindAsync(id);
     }
 
-    public async Task AddAsync(PedidoProduto entity)
+    public async Task<PedidoProduto> AddAsync(PedidoProduto entity)
     {
         await _context.PedidoProdutos.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(PedidoProduto entity)
+    public async Task<bool> UpdateAsync(PedidoProduto entity)
     {
         _context.PedidoProdutos.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.PedidoProdutos.FindAsync(id);
         if (entity != null)
         {
             _context.PedidoProdutos.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -354,31 +385,33 @@ public class EntradaProdutoRepository : IEntradaProdutoRepository
         return await _context.EntradaProdutos.ToListAsync();
     }
 
-    public async Task<EntradaProduto> GetByIdAsync(int id)
+    public async Task<EntradaProduto?> GetByIdAsync(int id)
     {
         return await _context.EntradaProdutos.FindAsync(id);
     }
 
-    public async Task AddAsync(EntradaProduto entity)
+    public async Task<EntradaProduto> AddAsync(EntradaProduto entity)
     {
         await _context.EntradaProdutos.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(EntradaProduto entity)
+    public async Task<bool> UpdateAsync(EntradaProduto entity)
     {
         _context.EntradaProdutos.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.EntradaProdutos.FindAsync(id);
         if (entity != null)
         {
             _context.EntradaProdutos.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
 
@@ -396,30 +429,32 @@ public class ImagemProdutoRepository : IImagemProdutoRepository
         return await _context.ImagensProduto.ToListAsync();
     }
 
-    public async Task<ImagemProduto> GetByIdAsync(int id)
+    public async Task<ImagemProduto?> GetByIdAsync(int id)
     {
         return await _context.ImagensProduto.FindAsync(id);
     }
 
-    public async Task AddAsync(ImagemProduto entity)
+    public async Task<ImagemProduto> AddAsync(ImagemProduto entity)
     {
         await _context.ImagensProduto.AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
-    public async Task UpdateAsync(ImagemProduto entity)
+    public async Task<bool> UpdateAsync(ImagemProduto entity)
     {
         _context.ImagensProduto.Update(entity);
-        await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var entity = await _context.ImagensProduto.FindAsync(id);
         if (entity != null)
         {
             _context.ImagensProduto.Remove(entity);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
+        return false;
     }
 }
